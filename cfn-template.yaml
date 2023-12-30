@@ -4,8 +4,7 @@ Description: |
   This template creates Python Flask Web Application on Amazon Linux 2023  
   EC2 Instance with custom security group allowing http connections on port 80, 8080 and SSH connection on port 22. 
   Roman Numerals Converter Application is downloaded from Github repository, then installed on Flask.
-
-Parameter:
+Parameters:
   LatestAmiId:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
     Default: '/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64'
@@ -16,7 +15,7 @@ Parameter:
       - t2.micro
       - t3.micro
       - t2.large
-    KeyName:
+  KeyName:
       Description: Choose your key pair
       Type: AWS::EC2::KeyPair::KeyName
       Default: firstkey
@@ -66,7 +65,7 @@ Resources:
 Outputs: 
   WebsiteURL:
     Value: !Sub 
-      - http://${PIA}
+      - http://${PIA}:8080
       - PIA: !GetAtt WebServerHost.PublicDnsName
     Description: Roman Numerals Converter Application URL
 
